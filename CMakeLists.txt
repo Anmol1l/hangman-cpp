@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 4.3)
-project(cpp_template)
+project(hangman-cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(cpp_template src/main.cpp
-        src/Random.h)
+add_executable(hangman-cpp src/main.cpp
+        src/Random.h
+        src/Wordlist.h
+        src/Session.h
+)
