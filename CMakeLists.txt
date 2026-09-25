@@ -7,4 +7,5 @@ add_executable(hangman-cpp src/main.cpp
         src/Random.h
         src/Wordlist.h
         src/Session.h
+        src/Session.cpp
 )
