@@ -1,16 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Random.h"
-
-namespace WordList {
-    std::vector<std::string_view> words{
-        "mystery", "broccoli", "account", "almost", "spaghetti", "opinion", "beautiful", "distance", "luggage"
-    };
-
-    std::string_view getRandomWord() {
-        return words[(Random::get<std::size_t>(0,words.size() - 1))];
-    }
-}
+#include "Wordlist.h"
 
 int main() {
     std::cout << "Welcome to C++ man (a variant of Hangman)\n";
