@@ -8,5 +8,7 @@ public:
     Session(std::string_view word)
         : m_word {word}
     { };
+    void displayBasicState() const;
+    void getInput() const;
 };
 #endif //CPP_TEMPLATE_SESSION_H
