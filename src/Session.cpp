@@ -1,6 +1,7 @@
 #include "Session.h"
 #include <iostream>
 #include <limits>
+#include <algorithm>
 
 bool hasUnextractedInput() {
     return !std::cin.eof() && std::cin.peek() != '\n';
@@ -73,9 +74,13 @@ void Session::displayBasicState(Session &s) {
 }
 
 void Session::startGame(Session &s) {
-    getInput();
-    printAndStoreWord(s);
-    printLives(s);
+    while (true) {
+        getInput();
+        std::vector<char> answer = printAndStoreWord(s);
+        printLives(s);
+        if (checkResults(answer))
+            return;
+    }
 }
 
 void Session::getInput() {
@@ -116,4 +121,18 @@ void Session::updateGuessArray(char letter) {
         }
     }
     m_guessed.push_back(letter);
+}
+
+bool Session::checkResults(std::vector<char>& answer) const {
+    if (answer.size() != m_word.size())
+        return false;
+    if (std::equal(m_word.begin(), m_word.end(), answer.begin())) {
+        std::cout << "You Won\n";
+        return true;
+    }
+    else if (m_wrong.size() >= 6) {
+        std::cout << "You Lost\n";
+        return true;
+    }
+    return false;
 }

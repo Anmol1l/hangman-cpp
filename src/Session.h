@@ -18,6 +18,8 @@ public:
     void getInput();
     void updateGuessArray(char letter);
     bool trackWrongAndStoreGuesses(char letter);
+    bool checkResults(std::vector<char>& answer) const;
+
     friend std::vector<char> printAndStoreWord(const Session& s);
     friend void printLives(Session& s);
 };
