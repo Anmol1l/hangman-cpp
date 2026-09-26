@@ -12,10 +12,6 @@ void ignoreLine() {
 }
 
 std::vector<char> printAndStoreWord(const Session &s) {
-    for (const auto letter: s.m_word)
-        std::cout << letter;
-    std::cout << '\n';
-
     std::vector<char> word{};
 
     std::cout << "The word: ";
