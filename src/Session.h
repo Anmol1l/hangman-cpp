@@ -17,7 +17,7 @@ public:
     void startGame(Session& s);
     void getInput();
     void updateGuessArray(char letter);
-    bool trackWrongGuesses(char letter);
+    bool trackWrongAndStoreGuesses(char letter);
     friend std::vector<char> printAndStoreWord(const Session& s);
     friend void printLives(Session& s);
 };

@@ -11,7 +11,6 @@ void ignoreLine() {
 }
 
 std::vector<char> printAndStoreWord(const Session &s) {
-
     for (const auto letter: s.m_word)
         std::cout << letter;
     std::cout << '\n';
@@ -38,24 +37,29 @@ std::vector<char> printAndStoreWord(const Session &s) {
     return word;
 }
 
-void printLives(Session& s) {
-    static int lives {6};
-    if (s.m_guessed.size() > 0) {
-        char letter {s.m_guessed.back()};
-
-        if (s.trackWrongGuesses(letter)) {
+void printLives(Session &s) {
+    static int lives{6};
+    if (!s.m_guessed.empty()) {
+        char letter{s.m_guessed.back()};
+        if (s.trackWrongAndStoreGuesses(letter)) {
             --lives;
         }
     }
     std::cout << "Wrong Guesses: ";
-    for (int i {0} ; i < lives; ++i) {
+    for (int i{0}; i < lives; ++i) {
         std::cout << "+ ";
+    }
+
+    if (!s.m_wrong.empty()) {
+        for (const auto letter: s.m_wrong) {
+            std::cout << letter << ' ';
+        }
     }
     std::cout << '\n';
 }
 
-bool Session::trackWrongGuesses(char letter) {
-    for (const auto character:m_word ) {
+bool Session::trackWrongAndStoreGuesses(char letter) {
+    for (const auto character: m_word) {
         if (letter == character)
             return false;
     }
@@ -102,7 +106,6 @@ void Session::getInput() {
             break;
         }
     }
-    std::cout << trackWrongGuesses(letter) << '\n';
     updateGuessArray(letter);
 }
 
